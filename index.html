@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Zeko</title>
+	<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <img src="logo.png" alt="Zeko logo" class="logo">
+
+        <nav>
+            <a href="index.html">home</a>  <!-- Lien vers la page d'accueil -->
+            <a href="shop.html">shop</a>  <!-- Lien vers la page Shop -->
+            <a href="#">hoodie</a>
+            <a href="#">sweatpant</a>
+            <a href="#">t-shirt</a>
+        </nav>
+
+        <div class="cart">
+            <img src="panier.png" alt="panier logo" class="panier">
+        </div>
+    </header>
+	
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left"></div>
+
+        <div class="hero-right">
+            <div class="search-bar">
+        <img src="loupe.png" alt="search">
+        <input type="text" id="search-input" placeholder="Search" oninput="searchProducts()">
+    </div>
+
+            <h1>
+                Zeko is finally<br>
+                here.
+            </h1>
+        </div>
+    </section>
+	<script>
+    window.addEventListener('scroll', function() {
+        let header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)'; // deviens plus sombre au scroll
+        } else {
+            header.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+        }
+    });
+</script>
+<section class="content">
+    <h2>Contenu pour tester le scroll</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet eros vel ligula gravida tincidunt ac ut est. Vestibulum vehicula gravida orci id aliquet. Phasellus scelerisque sapien ut turpis suscipit, et euismod justo ultricies. Morbi a nunc arcu. Ut id tempor augue. Integer at volutpat mi. Pellentesque ut quam suscipit, posuere felis sit amet, fermentum purus. Fusce ullamcorper posuere erat sit amet convallis. Donec ut diam et augue hendrerit euismod ac vitae ipsum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet eros vel ligula gravida tincidunt ac ut est. Vestibulum vehicula gravida orci id aliquet. Phasellus scelerisque sapien ut turpis suscipit, et euismod justo ultricies. Morbi a nunc arcu. Ut id tempor augue. Integer at volutpat mi. Pellentesque ut quam suscipit, posuere felis sit amet, fermentum purus. Fusce ullamcorper posuere erat sit amet convallis. Donec ut diam et augue hendrerit euismod ac vitae ipsum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet eros vel ligula gravida tincidunt ac ut est. Vestibulum vehicula gravida orci id aliquet. Phasellus scelerisque sapien ut turpis suscipit, et euismod justo ultricies. Morbi a nunc arcu. Ut id tempor augue. Integer at volutpat mi. Pellentesque ut quam suscipit, posuere felis sit amet, fermentum purus. Fusce ullamcorper posuere erat sit amet convallis. Donec ut diam et augue hendrerit euismod ac vitae ipsum.</p>
+    <!-- Ajoute autant de contenu que nécessaire pour tester -->
+</section>
+<script>
+    // Ajoute ou enlève la classe .scrolled au header selon le scroll
+    window.addEventListener('scroll', function() {
+        let header = document.getElementById('header');
+        if (window.scrollY > 50) {  /* Quand tu scrolles plus de 50px */
+            header.classList.add('scrolled');  /* Ajouter la classe 'scrolled' */
+        } else {
+            header.classList.remove('scrolled');  /* Retirer la classe 'scrolled' */
+        }
+    });
+</script>
+<script>
+function searchProducts() {
+    const query = document.getElementById('search-input').value.toLowerCase();  // Récupère la valeur saisie
+    const products = document.querySelectorAll('.product-card');  // Sélectionne tous les produits
+
+    // Pour chaque produit, on vérifie si le nom du produit contient la recherche
+    products.forEach(product => {
+        const productName = product.querySelector('h3').textContent.toLowerCase(); // Récupère le nom du produit
+        if (productName.includes(query)) {
+            product.style.display = 'block';  // Afficher le produit si le nom correspond
+        } else {
+            product.style.display = 'none';  // Cacher le produit sinon
+        }
+    });
+}
+</script>
+
+</body>
+</html>
