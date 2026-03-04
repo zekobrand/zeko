@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Zeko</title>
+    <!-- Lien vers les polices -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> <!-- Police pour SHOP -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet"> <!-- Police pour OUR FIRST SAMPLES -->
+    <link rel="stylesheet" href="shopstyle.css"> <!-- Lien vers ton fichier CSS -->
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <img src="logo.png" alt="Zeko logo" class="logo">
+
+        <nav>
+            <a href="index.html">home</a>  <!-- Lien vers la page d'accueil -->
+            <a href="shop.html">shop</a>  <!-- Lien vers la page Shop -->
+            <a href="#">hoodie</a>
+            <a href="#">sweatpant</a>
+            <a href="#">t-shirt</a>
+        </nav>
+
+        <div class="cart">
+    <img src="panier.png" alt="Panier logo" class="panier" onclick="toggleCart()">
+    <span id="cart-count">0</span>  <!-- Affiche le nombre d'articles -->
+</div>
+<!-- Modal du panier -->
+<div id="cart-modal" class="cart-modal">
+    <div class="cart-content">
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>  <!-- Liste des articles -->
+        <button onclick="clearCart()">Clear Cart</button>
+    </div>
+</div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="shop-container">
+        <h1 class="shop-title">SHOP</h1>
+        <p class="shop-description">OUR FIRST SAMPLES</p>
+
+        <!-- Products -->
+        <div class="product-grid">
+    <!-- Product 1: Black Hoodie -->
+    <div class="product-card">
+        <img src="blackhoodie.png" alt="Black Hoodie" class="product-img">
+        <h3>Black Hoodie</h3>
+        <p>EUR 70 | USD 82 | OMR 32</p>
+        <button class="add-to-cart" onclick="addToCart('Black Hoodie', 70)">Add to Cart</button>
+    </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+        <img src="flared.png" alt="Flared Pant" class="product-img">
+        <h3>Flared Pant</h3>
+        <p>EUR 50 | USD 59 | OMR 23</p>
+        <button class="add-to-cart" onclick="addToCart('Flared Pant', 50)">Add to Cart</button>
+    </div>
+</div>
+    </main>
+	// Fonction pour afficher/masquer le panier
+	<script>
+function toggleCart() {
+    const cartModal = document.getElementById('cart-modal');
+    cartModal.style.display = cartModal.style.display === 'block' ? 'none' : 'block';
+}
+
+// Tableau pour stocker les produits dans le panier
+let cart = [];
+
+// Fonction pour ajouter un produit au panier
+function addToCart(productName, productPrice) {
+    cart.push({ name: productName, price: productPrice });
+    updateCart();
+}
+
+// Fonction pour mettre à jour l'affichage du panier
+function updateCart() {
+    const cartCount = document.getElementById('cart-count');
+    const cartItems = document.getElementById('cart-items');
+    
+    // Afficher le nombre d'articles dans le panier
+    cartCount.textContent = cart.length;
+    
+    // Afficher les articles dans le panier
+    cartItems.innerHTML = '';  // Effacer les anciens articles
+    cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - $${item.price}`;
+        cartItems.appendChild(li);
+    });
+}
+
+// Fonction pour vider le panier
+function clearCart() {
+    cart = [];
+    updateCart();
+}
+</script>
+<script>
+    // Ajoute ou enlève la classe .scrolled au header selon le scroll
+    window.addEventListener('scroll', function() {
+        let header = document.getElementById('header');
+        if (window.scrollY > 50) {  /* Quand tu scrolles plus de 50px */
+            header.classList.add('scrolled');  /* Ajouter la classe 'scrolled' */
+        } else {
+            header.classList.remove('scrolled');  /* Retirer la classe 'scrolled' */
+        }
+    });
+</script>
+
+
+</body>
+
+
+
+</html>
