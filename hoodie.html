@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Black Hoodie – Zeko</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="hoodiestyle.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+    <img src="logo.png" alt="Zeko logo" class="logo">
+
+    <nav>
+        <a href="index.html">home</a>
+        <a href="shop.html">shop</a>
+        <a href="#">hoodie</a>
+        <a href="#">sweatpant</a>
+        <a href="#">t-shirt</a>
+    </nav>
+
+    <div class="cart">
+        <img src="panier.png" alt="Panier logo" class="panier">
+        <span id="cart-count">0</span> <!-- Affiche le nombre d'articles -->
+    </div>
+</header>
+
+<!-- PRODUCT PAGE -->
+<main class="product-page">
+
+    <!-- LEFT : IMAGES -->
+    <div class="product-images">
+        <div class="thumbnails">
+            <img src="hoodie 1.png" class="thumb" alt="hoodie image 1">
+            <img src="hoodie 2.png" class="thumb" alt="hoodie image 2">
+            <img src="hoodie 3.png" class="thumb" alt="hoodie image 3">
+            <img src="hoodie 4.jpeg" class="thumb" alt="hoodie image 4">
+        </div>
+
+        <div class="main-image">
+            <img src="hoodie main.jpeg" id="main-img" alt="Black Hoodie">
+        </div>
+
+    </div>
+
+    <!-- RIGHT : INFO -->
+    <div class="product-info">
+        <h1>Black hoodie</h1>
+        <p class="subtitle">Sweat à capuche unisexe</p>
+        <p class="price">70 €</p>
+
+        <p class="size-title">Sélectionner la taille</p>
+
+        <div class="sizes">
+            <button>XS</button>
+            <button>S</button>
+            <button>M</button>
+            <button>L</button>
+            <button>XL</button>
+        </div>
+
+        <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+
+</main>
+
+<!-- JS -->
+<script>
+// CHANGEMENT IMAGE
+document.querySelectorAll(".thumb").forEach(img => {
+    img.addEventListener("click", () => {
+        document.getElementById("main-img").src = img.src;
+    });
+});
+
+// HEADER SCROLL - CHANGE LA COULEUR DU COMPTEUR
+window.addEventListener("scroll", function() {
+    const header = document.getElementById("header");
+    const cartCount = document.getElementById("cart-count");
+
+    // Si on est en bas du scroll, le header devient sombre
+    if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+        cartCount.style.color = "white"; // Change couleur du chiffre du panier
+    } else {
+        header.classList.remove("scrolled");
+        cartCount.style.color = "black"; // Retourne à la couleur d'origine
+    }
+});
+
+// SÉLECTION DE TAILLE
+let selectedSize = null;
+
+document.querySelectorAll(".sizes button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".sizes button")
+            .forEach(b => b.classList.remove("active"));
+
+        btn.classList.add("active");
+        selectedSize = btn.innerText;
+    });
+});
+
+// AJOUTER AU PANIER
+const cartCount = document.getElementById("cart-count");
+
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cartCount.innerText = cart.length;
+}
+
+updateCartCount();
+
+document.querySelector(".add-to-cart").addEventListener("click", () => {
+
+    if (!selectedSize) {
+        alert("Veuillez sélectionner une taille");
+        return;
+    }
+
+    const product = {
+        name: "Black Hoodie",
+        price: 70,
+        size: selectedSize,
+        image: document.getElementById("main-img").src
+    };
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: white;
+    color: black;
+}
+
+/* HEADER */
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    color: white  /* Fond blanc quand on est en haut */
+    z-index: 1000;
+    transition: background-color 0.3s ease, color 0.3s ease, backdrop-filter 0.3s ease;  /* Transition fluide */
+    background: rgba(255, 255, 255, 0);  /* Fond sombre et transparent au scroll */
+}
+header.scrolled {
+    background: rgba(0, 0, 0, 0.9);  /* Fond sombre au scroll */
+    backdrop-filter: blur(10px);  /* Flou du fond */
+}
+
+header .logo {
+    height: 90px;
+    filter: none;  /* Noir par défaut (logo blanc) */
+    transition: filter 0.3s ease;  /* Transition fluide */
+}
+
+/* Quand on scroll (ajouter la classe .scrolled au header) */
+header.scrolled .logo {
+	filter: invert(1)
+}
+.panier{
+	height: 35px;
+	filter: invert(1)
+    
+	}
+	header.scrolled .panier{
+	filter: none
+	}
+
+.logo {
+    height: 45px;
+}
+
+nav {
+    display: flex;
+    gap: 50px;
+}
+header.scrolled .nav{
+	filter: invert(1)
+}
+
+nav a {
+    color: black;  /* Liens noirs quand on est en haut */
+    text-decoration: none;
+    font-size: 22px;
+    font-family: 'UnifrakturCook', cursive;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;  /* Transition fluide pour le survol */
+}header.scrolled nav a {
+    color: white;  /* Change la couleur des liens en blanc quand on scroll */
+}
+
+nav a:hover {
+    transform: scale(1.1);
+    color: white; /* couleur au survol, à ajuster selon ton choix */
+}
+
+.cart {
+    color: black;  /* Icône du panier noir au début */
+    font-size: 22px;
+    transition: color 0.3s ease;  /* Transition fluide pour l'icône */
+}
+
+/* PRODUCT PAGE */
+.product-page {
+    display: flex;
+    gap: 80px;
+    padding: 140px 80px;
+}
+
+/* IMAGES */
+.product-images {
+    display: flex;
+    gap: 30px;
+}
+
+.thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.thumbnails img {
+    width: 70px;
+    cursor: pointer;
+}
+
+.main-image img {
+    width: 520px;
+}
+
+/* INFO */
+.product-info {
+    max-width: 400px;
+	font-family: 'Arial', sans-serif;
+}
+
+.product-info h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.color-preview img {
+    width: 90px;
+    border: 2px solid black;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+/* SIZES */
+.size-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.sizes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.sizes button {
+    width: 70px;
+    height: 45px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sizes button.active {
+    background: black;
+    color: white;
+}
+
+/* ADD TO CART */
+.add-to-cart {
+    width: 100%;
+    height: 55px;
+    border-radius: 30px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+.sizes button {
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.sizes button:hover {
+    transform: scale(1.1);  /* Agrandissement léger */
+    background-color: black;  /* Change la couleur de fond */
+    color: white;  /* Change la couleur du texte */
+}
+.sizes button.active {
+    transform: scale(0.95);  /* Réduction du bouton */
+    background-color: black;  /* Couleur de fond active */
+    color: white;  /* Couleur du texte active */
+}
